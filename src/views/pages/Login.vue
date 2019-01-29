@@ -43,7 +43,7 @@ export default {
     login: function () {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.replace('home')
+          this.$router.replace('overview')
         },
         (err) => {
           alert('Oops. ' + err.message)
@@ -53,27 +53,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>  /* "scoped" attribute limit the CSS to this component only */
-  .login {
-    margin-top: 40px;
-  }
-  input {
-    margin: 10px 0;
-    width: 20%;
-    padding: 15px;
-  }
-  button {
-    margin-top: 20px;
-    width: 10%;
-    cursor: pointer;
-  }
-  p {
-    margin-top: 40px;
-    font-size: 13px;
-  }
-  p a {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-</style>

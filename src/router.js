@@ -2,10 +2,10 @@
 import firebase from 'firebase'
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import About from './views/About.vue'
-import Login from '@/views/Login'
-import SignUp from '@/views/SignUp'
+import Overview from './views/pages/Overview.vue'
+import MainLayout from './views/MainLayout.vue'
+import Login from '@/views/pages/Login'
+import SignUp from '@/views/pages/SignUp'
 
 Vue.use(Router)
 
@@ -28,17 +28,12 @@ const router = new Router({
       component: SignUp
     },
     {
-      path: '/home',
-      name: 'home',
-      component: Home,
+      path: '/overview',
+      component: MainLayout,
+      children: [{ name: 'overview', path: '', component: Overview }],
       meta: {
         requiresAuth: true
       }
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About
     }
   ]
 })
@@ -47,7 +42,7 @@ router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('home')
+  else if (!requiresAuth && currentUser) next('overview')
   else next()
 })
 
