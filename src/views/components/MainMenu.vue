@@ -44,13 +44,13 @@ export default {
       {
         display: 'Overview',
         action: () => {
-
+          this.$router.push({ path: '/overview' })
         }
       },
       {
         display: 'Clients',
         action: () => {
-
+          this.$router.push({ path: '/clients' })
         }
       },
       {

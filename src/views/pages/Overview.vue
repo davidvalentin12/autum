@@ -1,25 +1,21 @@
 <template>
-  <div class="overview">
-  <v-container grid-list-md>
+  <v-container grid-list-md fluid>
     <v-layout row wrap >
-      <v-flex xs12>
-        <v-card dark color="secondary">
+      <v-flex xs12 >
+        <v-card class="py-3 px-3"  color="">
           <CalendarSchedule/>
         </v-card>
       </v-flex>
-      <v-flex xs6>
-      <v-card dark color="secondary">
-      <ClientList/>
-      </v-card>
+      <v-flex  xs6>
+        <ClientList/>
       </v-flex>
       <v-flex xs6>
-      <v-card dark color="secondary">
+      <v-card class="py-3 px-3"  color="">
       <ProjectList/>
       </v-card>
       </v-flex>
     </v-layout>
 </v-container>
-  </div>
 </template>
 
 <script>

@@ -54,8 +54,8 @@ export default {
   },
   data: () => {
     return {
-      drawer: true,
-      drawerRight: true,
+      drawer: false,
+      drawerRight: false,
       right: null,
       left: null,
       menuItems: []
