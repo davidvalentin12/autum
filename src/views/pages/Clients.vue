@@ -1,4 +1,5 @@
 <template>
+
   <v-container grid-list-md fluid>
     <v-layout row wrap >
       <v-flex xs12 >
@@ -12,6 +13,8 @@
 import ClientList from '@/views/components/ClientList.vue'
 export default {
   name: 'overview',
+  data: () => ({
+  }),
   components: {
     ClientList
   },

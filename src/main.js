@@ -5,7 +5,10 @@ import App from './App.vue'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-Vue.use(Vuetify)
+import 'font-awesome/css/font-awesome.min.css'
+Vue.use(Vuetify, {
+  iconfont: 'md'
+})
 Vue.config.productionTip = false
 
 let app = ''

@@ -2,15 +2,13 @@
 <v-container grid-list-md fluid>
 <v-layout row wrap  >
 <v-flex pa-2 xs3>
-        <v-btn fab dark color="indigo">
+        <v-btn fab dark color="orange darken-1">
           <v-icon>add</v-icon>
         </v-btn>
         <strong class="title">New project</strong>
       </v-flex>
 <v-flex v-for="i in 4" :key="`3${i}`" pa-2 xs3>
-        <v-card dark color="secondary">
-          <v-card-text class="px-2">3</v-card-text>
-        </v-card>
+        <Project/>
       </v-flex>
 </v-layout>
 </v-container>
@@ -21,8 +19,13 @@
 
 <script>
 
+import Project from '@/views/components/Project.vue'
+
 export default {
   name: 'Client',
+  components: {
+    Project
+  },
   data: () => {
     return {
     }

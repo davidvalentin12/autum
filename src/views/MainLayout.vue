@@ -13,7 +13,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
-      color="blue-grey"
+      color="orange"
       dark
       fixed
       app
@@ -34,10 +34,8 @@
     </v-content>
     <v-navigation-drawer right temporary v-model="right" fixed >
     </v-navigation-drawer>
-    <v-footer color="blue-grey" class="white--text" app>
-      <span>Vuetify</span>
-      <v-spacer></v-spacer>
-      <span>&copy; 2017</span>
+    <v-footer dark color="orange darken-2" class="white--text" app>
+      <span class="text-md-center">Autum App &copy; 2019</span>
     </v-footer>
   </v-app>
 </template>
@@ -57,8 +55,7 @@ export default {
       drawer: false,
       drawerRight: false,
       right: null,
-      left: null,
-      menuItems: []
+      left: null
     }
   },
   created: function () {

@@ -1,9 +1,9 @@
 <template>
     <div>
-    <v-toolbar flat>
+    <v-toolbar dark color="orange lighten-1" flat>
       <v-list>
         <v-list-tile>
-          <v-list-tile-title class="title">
+          <v-list-tile-title  class="title">
             Autum
           </v-list-tile-title>
         </v-list-tile>

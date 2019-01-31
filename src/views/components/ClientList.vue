@@ -1,7 +1,7 @@
 <template>
 <v-card  class="py-3 px-3" color="">
      <v-card-title>
-        <v-btn fab dark color="indigo">
+        <v-btn fab dark color="orange darken-1">
           <v-icon>add</v-icon>
         </v-btn>
         <strong class="title">New client</strong>
@@ -24,13 +24,10 @@
       <v-list-tile
             v-for="client in clients"
             :key="client.id"
-            avatar
-            @click="client.select(client.id)"
-          >
+            @click="client.select(client.id)">
             <v-btn small fab>
               <v-icon>add</v-icon>
              </v-btn>
-
             <v-list-tile-content>
               <v-list-tile-title>Cliente 1</v-list-tile-title>
               <v-list-tile-sub-title>Audiovisuales</v-list-tile-sub-title>
