@@ -70,7 +70,7 @@ export default {
   methods: {
     logout: (self) => {
       firebase.auth().signOut().then(() => {
-        self.$router.replace('login')
+        self.$router.push('/login')
       })
     }
   }

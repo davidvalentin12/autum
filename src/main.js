@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import './plugins/vuetify'
+import './config/vuetify'
+import './config/firebase'
 import firebase from 'firebase'
 import App from './App.vue'
 import router from './router'
@@ -12,16 +13,6 @@ Vue.use(Vuetify, {
 Vue.config.productionTip = false
 
 let app = ''
-const config = {
-  apiKey: 'AIzaSyCcM0Pwc7CmXW0JWMEsgnb_tRmowQZ9Wm0',
-  authDomain: 'autum-md.firebaseapp.com',
-  databaseURL: 'https://autum-md.firebaseio.com',
-  projectId: 'autum-md',
-  storageBucket: 'autum-md.appspot.com',
-  messagingSenderId: '740978566704'
-}
-
-firebase.initializeApp(config)
 
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {

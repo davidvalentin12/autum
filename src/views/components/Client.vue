@@ -7,7 +7,7 @@
         </v-btn>
         <strong class="title">New project</strong>
       </v-flex>
-<v-flex v-for="i in 4" :key="`3${i}`" pa-2 xs3>
+        <v-flex v-for="i in 4" :key="`3${i}`" pa-2 xs3>
         <Project/>
       </v-flex>
 </v-layout>
