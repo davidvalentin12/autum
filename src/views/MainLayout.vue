@@ -23,18 +23,47 @@
       <v-toolbar-title></v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
-    <v-navigation-drawer :mini-variant.sync="mini" hide-overlay
-    stateless fixed v-model="drawer" app>
-      <MainMenu/>
-    </v-navigation-drawer>
+    <v-navigation-drawer
+    :mini-variant="drawer"
+    permanent
+    hide-overlay
+    stateless
+    fixed
+    app
+  >
+  <MainMenu v-bind:drawer="drawer" />
+    <v-toolbar flat class="transparent">
+      <v-list class="pa-0">
+        <v-list-tile avatar>
+          <v-list-tile-avatar>
+            <img src="https://randomuser.me/api/portraits/men/85.jpg">
+          </v-list-tile-avatar>
+
+          <v-list-tile-content>
+            <v-list-tile-title>John Leider</v-list-tile-title>
+          </v-list-tile-content>
+
+          <v-list-tile-action>
+            <v-btn
+              icon
+              @click.stop="drawer = !drawer"
+            >
+              <v-icon>chevron_left</v-icon>
+            </v-btn>
+          </v-list-tile-action>
+        </v-list-tile>
+      </v-list>
+    </v-toolbar>
+
+    <v-list class="pt-0" dense>
+      <v-divider></v-divider>
+    </v-list>
+  </v-navigation-drawer>
     <v-content>
         <router-view></router-view>
     </v-content>
     <v-navigation-drawer right temporary v-model="right" fixed >
     </v-navigation-drawer>
-    <v-footer dark color="orange" class="white--text" app>
-      <span class="text-md-center">Autum App &copy; 2019</span>
-    </v-footer>
   </v-app>
 </template>
 

@@ -1,11 +1,19 @@
 <template>
     <div>
     <v-toolbar dark color="orange lighten-1" flat>
-      <v-list>
+      <v-list class="pa-0">
         <v-list-tile>
           <v-list-tile-title  class="title">
             Autum
           </v-list-tile-title>
+          <v-list-tile-action>
+            <v-btn
+              icon
+              @click.stop="drawer = !drawer"
+            >
+              <v-icon>chevron_left</v-icon>
+            </v-btn>
+          </v-list-tile-action>
         </v-list-tile>
       </v-list>
     </v-toolbar>
@@ -34,6 +42,7 @@ import firebase from 'firebase'
 
 export default {
   name: 'MainMenu',
+  props: ['drawer'],
   data: () => {
     return {
       menuItems: []
