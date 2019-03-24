@@ -8,7 +8,6 @@ const ClientFactory = {
     let clients = db.collection('clients')
     let userUid = firebase.auth().currentUser.uid
     let userClients = []
-    console.log(userUid)
 
     return clients
       .where('author', '==', userUid)
