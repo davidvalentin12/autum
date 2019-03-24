@@ -1,40 +1,104 @@
 <template>
-    <div>
-    <v-toolbar dark color="orange lighten-1" flat>
-      <v-list class="pa-0">
-        <v-list-tile>
-          <v-list-tile-title  class="title">
-            Autum
-          </v-list-tile-title>
-          <v-list-tile-action>
-            <v-btn
-              icon
-              @click.stop="drawer = !drawer"
-            >
-              <v-icon>chevron_left</v-icon>
-            </v-btn>
-          </v-list-tile-action>
+
+    <!---->
+ <v-layout @mouseover="toggleMenu(false)" @mouseleave="toggleMenu(true)" class="menu-fill-height" align-space-around justify-space-between column fill-height>
+      <v-list class="" two-line >
+        <v-list-tile @click="navigateTo('/overview')" > 
+            <img v-show="mainMenu" class="menu-isotype" src="../../assets/img/isotipo.svg" >
+            <img  v-show="!mainMenu" class="menu-logo" src="../../assets/img/logo.svg" >
         </v-list-tile>
       </v-list>
-    </v-toolbar>
-    <v-divider></v-divider>
-      <v-list dense>
-      <v-list-tile
-       v-for="menuItem in menuItems"
-        :key="menuItem.title"
-        @click="menuItem.action()">
+      <v-list  two-line >
+        <v-list-tile
+
+        v-for="menuItem in menuItems"
+        
+        :class="{ 'adm-orange white--text': isActive(menuItem.path) }"
+        @click="navigateTo(menuItem.path)"
+
+          >
           <v-list-tile-action>
-            <v-icon>{{menuItem.icon}}</v-icon>
+            <v-icon  :class="{ 'theme--dark': isActive(menuItem.path) }" >{{menuItem.icon}}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>{{menuItem.display}}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile
+        @click="logout()">
+          <v-list-tile-action>
+            <v-icon>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Logout</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
-      </div>
+      <v-list>
+      <v-speed-dial
+      v-model="fab"
+                    left
+                    direction="top"
+                    transition="scale-transition"
+                    bottom
+                    fixed
+                    open-on-hover
+                    class="">
+      
+        <v-btn slot="activator"
+        
+                        color="secondary"
+                        fab
+                        v-model="fab"
+      >
+      <v-icon v-if="!fab">add</v-icon>
+          <v-icon v-if="fab">close</v-icon>
+        </v-btn>
+      
+      <v-btn
+        fab
+        dark
+        small
+        color="green"
+      >
+        <v-icon>edit</v-icon>
+      </v-btn>
+      <v-btn
+        fab
+        dark
+        small
+        color="indigo"
+      >
+        <v-icon>add</v-icon>
+      </v-btn>
+      <v-btn
+        fab
+        dark
+        small
+        color="red"
+      >
+        <v-icon>delete</v-icon>
+      </v-btn>
+    </v-speed-dial>
+      </v-list>
+
+        </v-layout>
 </template>
 
 <style lang="scss" scoped>
+.menu-isotype{
+    transition-delay: 0s;
+    width:100%;
+    max-width:48px;
+}
+.menu-logo{
+    transition-delay: 0s;
+    margin:auto;
+    width:160px;
+}
+.menu-fill-height{
+    height:100vh;
+}
 </style>
 
 <script>
@@ -42,45 +106,53 @@ import firebase from 'firebase'
 
 export default {
   name: 'MainMenu',
-  props: ['drawer'],
+  props: ['mainMenu'],
   data: () => {
     return {
-      menuItems: []
+      menuItems: [],
+      fab: false
     }
   },
   created: function () {
     this.menuItems = [
       {
         display: 'Overview',
-        action: () => {
-          this.$router.push({ path: '/overview' })
-        }
+       path: '/overview',
+        icon: 'bar_chart'
       },
       {
         display: 'Clients',
-        action: () => {
-          this.$router.push({ path: '/clients' })
-        }
+         path: '/clients',
+        icon: 'description'
       },
       {
         display: 'Profile',
-        action: () => {
-
-        }
-      },
-      {
-        display: 'Logout',
-        action: () => {
-          this.logout(this)
-        },
-        icon: 'exit_to_app'
+        path: '/profile',
+        icon: 'person_outline'
       }]
   },
   methods: {
-    logout: (self) => {
+    logout() {
       firebase.auth().signOut().then(() => {
-        self.$router.push('/login')
+        this.$router.push('/login')
       })
+    },
+    navigateTo(path){
+        this.$forceUpdate();
+        this.$router.push({ path: path })
+    },
+    isActive(path){
+        if (this.$router.currentRoute.fullPath.includes(path)){
+            return true;
+        }else{
+            return false;
+        }
+        
+    },
+    toggleMenu(value) {
+        if (value !== undefined){
+            this.$emit('update:mainMenu', value)
+        }
     }
   }
 }

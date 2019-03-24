@@ -109,7 +109,6 @@ export default {
   computed: {
     filteredClients () {
       return this.clients.filter(client => {
-          console.log(client)
         if (this.clientFilter === '') {
           return true
         }
@@ -140,7 +139,6 @@ export default {
     },
     createClient: function () {
       let client = new Client().create(this.newClient.name, this.newClient.description)
-      console.log(client)
     },
     updateClientList (clients) {
       this.clients = clients
