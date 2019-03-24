@@ -1,5 +1,5 @@
-import firebase from 'firebase'
-import { Client } from '@/domain/client/entity.js'
+import firebase from 'firebase';
+import { Client } from '@/domain/client/entity.js';
 
 let db = firebase.firestore()
 
@@ -10,18 +10,20 @@ const ClientFactory = {
     let userClients = []
     console.log(userUid)
 
-    return clients.where('author', '==', userUid).onSnapshot(function (querySnapshot) {
-      if (!querySnapshot.empty) {
-        userClients = []
-        querySnapshot.forEach(function (doc) {
-          userClients.push(new Client().init(doc))
-        })
-        onUpdate(userClients)
-      } else {
-        console.log('No clients found')
-        onUpdate(userClients)
-      }
-    })
+    return clients
+      .where('author', '==', userUid)
+      .onSnapshot(function (querySnapshot) {
+        if (!querySnapshot.empty) {
+          userClients = []
+          querySnapshot.forEach(function (doc) {
+            userClients.push(new Client().init(doc))
+          })
+          onUpdate(userClients)
+        } else {
+          console.log('No clients found')
+          onUpdate(userClients)
+        }
+      })
   }
 }
 

@@ -14,8 +14,6 @@ class User {
   constructor (uid) {
     return this
   }
-
-  
 }
 
 export { User }

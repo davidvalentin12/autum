@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="white-background">
     <v-navigation-drawer  fixed v-model="drawerRight" right  clipped app>
       <v-list dense>
         <v-list-tile @click.stop="right = !right">
@@ -68,16 +68,7 @@
 </template>
 
 <style lang="scss">
-//   .orange {
-//     background: rgba(255,10,108,1) ;
-// background: -moz-linear-gradient(left, rgba(255,10,108,1) 0%, rgba(251,149,17,1) 100%);
-// background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,10,108,1)), color-stop(100%, rgba(251,149,17,1)));
-// background: -webkit-linear-gradient(left, rgba(255,10,108,1) 0%, rgba(251,149,17,1) 100%);
-// background: -o-linear-gradient(left, rgba(255,10,108,1) 0%, rgba(251,149,17,1) 100%);
-// background: -ms-linear-gradient(left, rgba(255,10,108,1) 0%, rgba(251,149,17,1) 100%);
-// background: linear-gradient(to right, rgba(255,10,108,1) 0%, rgba(251,149,17,1) 100%);
-// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0a6c', endColorstr='#fb9511', GradientType=1 );
-//   }
+  @import '../styles/main.scss';
 </style>
 
 <script>

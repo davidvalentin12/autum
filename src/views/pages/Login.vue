@@ -1,51 +1,67 @@
 <template>
-
-  <v-app id="inspire">
-    <v-content>
-      <v-container grid-list-md  fill-height>
-
-      <v-layout row wrap align-center justify-center>
-
-          <v-flex xs12 md6 class="px0">
-
-              <v-card-text>
-                <v-form>
-                  <v-text-field prepend-icon="person" name="login" label="Login" type="text" v-model="email" color="orange"></v-text-field>
-                  <v-text-field id="password" prepend-icon="lock" name="password" label="Password" type="password" color="orange" v-model="password" ></v-text-field>
-
-                </v-form>
-              </v-card-text>
-              <v-card-actions class="pa-3">
-                <span>Don't have an account?  <a class="orange--text" @click="signup" >Sign up</a></span>
-                <v-spacer></v-spacer>
-                <v-btn dark color="orange "  @click="login">Login</v-btn>
-              </v-card-actions>
-               <v-divider light></v-divider>
-
-          </v-flex>
-          <v-flex xs12 md6 px0>
-
-              <v-card-text>
-                <v-form>
-                  <v-text-field prepend-icon="person" name="login" label="Login" type="text" v-model="email" color="orange"></v-text-field>
-                  <v-text-field id="password" prepend-icon="lock" name="password" label="Password" type="password" color="orange" v-model="password" ></v-text-field>
-
-                </v-form>
-              </v-card-text>
-              <v-card-actions class="pa-3">
-                <span>Don't have an account?  <a class="orange--text" @click="signup" >Sign up</a></span>
-                <v-spacer></v-spacer>
-                <v-btn dark color="orange "  @click="login">Login</v-btn>
-              </v-card-actions>
-               <v-divider light></v-divider>
-
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
-  </v-app>
-
+    <v-app id="white-background" >
+        <v-content>
+            <v-container fill-height>
+                <v-layout row wrap align-center justify-center>
+                    <v-flex xs12 md10 lg8>
+                     <v-layout row wrap >
+                        <v-flex  d-flex  xs12>
+                            <img class="login-logo" src="../../assets/img/LOGOTIPO.svg">
+                            </v-flex>
+                        <v-flex  d-flex  xs12>
+                        <v-card class="elevation-18">
+                            <v-layout row wrap justify-center>
+                                <v-flex  d-flex  xs12 md6 lg6 >
+                                    <v-card flat class="pa-3">
+                                    <v-card-title
+                                    class=" lighten-2"
+                                    >
+                                            <div>
+                                    <h2 class="headline">Login</h2>
+                                    <span class="grey--text  font-weight-light" >Sign in to your account</span></div>
+                                    </v-card-title>
+                                        <v-card-text>
+                                            <v-form>
+                                            <v-text-field solo class="adm-login-input" name="login" label="Email ID" type="text" v-model="email" color="secondary" ></v-text-field>
+                                            <v-text-field solo class="adm-login-input" id="password"  name="password" label="Password" type="password" color="secondary" v-model="password" ></v-text-field>
+                                            <v-btn class="adm-login-button font-weight-light" dark large color="secondary "  @click="login">Log in</v-btn>
+                                            </v-form>
+                                             <p class="text-md-center mb-0"><a class="alert--text" @click="signup" >Forgot password?</a></p>
+                                        </v-card-text>
+                                        </v-card>
+                                </v-flex>
+                                <v-flex    d-flex  xs12 md6 lg6 px0 >
+                                <v-card flat color="secondary" class="white--text pa-3" >
+                                <v-layout row wrap align-center fill-height>
+                                <div>
+                                <v-card-title
+                                    class=" lighten-2 text-md-center ">
+                                            <div><h2 class="headline">Sign Up</h2>
+                                    <span class="font-weight-thin" >qui dolorem ipsum, quia dolor sit amet consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem</span></div>
+                                    </v-card-title>
+                                    <v-card-text>
+                                     <v-btn class="adm-login-button font-weight-light secondary--text"  large   @click="signup">Register now!</v-btn>
+                                    </v-card-text>
+                                    </div>
+                                    </v-layout>
+                                    </v-card>
+                                </v-flex>
+                            </v-layout>
+                            </v-card>
+                        </v-flex>
+                        <v-flex  d-flex  xs12>
+                            <p class="login-logo"></p>
+                            </v-flex>
+                        </v-layout>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-content>
+    </v-app>
 </template>
+<style lang="scss">
+@import '../../styles/login';
+</style>
 
 <script>
 import firebase from 'firebase'

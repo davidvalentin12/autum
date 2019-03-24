@@ -1,0 +1,19 @@
+.login-logo{
+    display:block;
+    margin:auto;
+    height:200px;
+    &.signup{
+        height:140px;
+    }
+}
+.adm-login-input .v-input__slot{
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    border: 0.5px solid lightgrey !important;
+}
+.adm-login-button {
+    text-transform: none !important;
+    width:100%;
+    margin-left: 0 !important;
+    border-radius: 10px !important;
+}

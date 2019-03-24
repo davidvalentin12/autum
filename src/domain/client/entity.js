@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 let db = firebase.firestore()
 
@@ -12,13 +12,15 @@ class Client {
   create (name, description) {
     let self = this
     let clients = db.collection('clients')
-    clients.add({
-      author: this.author,
-      name: name,
-      description: description,
-      projects: [],
-      createdAt: new Date().getTime()
-    })
+    clients
+      .add({
+        author: this.author,
+        name: name,
+        description: description,
+        projects: [],
+        timeSpent: 'No time spent yet',
+        createdAt: new Date().getTime()
+      })
       .then(function (docRef) {
         self.ref = docRef
       })
