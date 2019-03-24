@@ -8,7 +8,11 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import 'font-awesome/css/font-awesome.min.css'
 Vue.use(Vuetify, {
-  iconfont: 'md'
+  iconfont: 'md',
+  theme: {
+    primary: '#FE4F3F',
+    secondary: '#5A4FEF'
+  }
 })
 Vue.config.productionTip = false
 

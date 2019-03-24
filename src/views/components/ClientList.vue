@@ -1,116 +1,77 @@
 <template>
-<v-card  class="py-3 px-3" color="">
+<v-card>
      <v-card-title>
-        <v-btn fab dark color="orange darken-1" @click="newClient.show = true">
+        <v-btn fab dark color="adm-orange"  small @click="newClient.show = true">
           <v-icon>add</v-icon>
         </v-btn>
-        <strong class="title" >New client</strong>
+        <strong class="title">New client</strong>
       </v-card-title>
+    </v-card-title>
+    <v-list two-line subheader>
+        <v-subheader inset>
+            <v-list-tile-content>
+              <v-list-tile-title><strong class="title">Client List</strong></v-list-tile-title>
+            </v-list-tile-content>
 
-      <v-card-title>
-      <strong class="title">Client List</strong>
-      <v-spacer></v-spacer>
-      <v-spacer></v-spacer>
-      <v-spacer></v-spacer>
-       <v-text-field
+            <v-list-tile-action>
+              <v-text-field
+              class="adm-input-txt"
             label="Solo"
             placeholder="Search"
             v-model="clientFilter"
             solo
             single-line
             hide-details
-            append-icon="search"
-          ></v-text-field>
-    </v-card-title>
-     <v-list two-line subheader>
-      <v-subheader inset>Clients</v-subheader>
-      <v-list-tile
-            v-for="client in filteredClients"
+            prepend-inner-icon="search"
+            ></v-text-field>
+
+            </v-list-tile-action>
+        </v-subheader>
+            
+        <div  v-for="client in filteredClients">
+            <v-divider></v-divider>
+            <v-list-tile
             :key="client.doc.id"
             @click="selectClient(client.doc.id)"
-            avatar>
-            <v-list-tile-avatar>
-              <v-icon class="grey lighten-1 white--text">folder</v-icon>
-            </v-list-tile-avatar>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ client.data.name}}</v-list-tile-title>
-              <v-list-tile-sub-title>{{ client.data.description}}</v-list-tile-sub-title>
-            </v-list-tile-content>
+            avatar
+            inset>
+                <v-list-tile-avatar>
+                </v-list-tile-avatar>
+                <v-list-tile-avatar>
+                    <img v-bind:src="randomUser(client.data)">
+                </v-list-tile-avatar>
+                <v-list-tile-content>
+                    <v-list-tile-title>{{ client.data.name}}</v-list-tile-title>
+                    <v-list-tile-sub-title>{{ client.data.description}}</v-list-tile-sub-title>
+                </v-list-tile-content>
 
-            <v-list-tile-action>
-              <v-btn icon ripple>
-                <v-icon color="grey lighten-1">info</v-icon>
-              </v-btn>
-
-            </v-list-tile-action>
-            <v-list-tile-action>
-              <v-btn icon ripple>
-                <v-icon color="grey lighten-1" small>edit</v-icon>
-              </v-btn>
-
-            </v-list-tile-action>
-          </v-list-tile>
+                <v-list-tile-action>
+                <v-btn icon ripple>
+                    <v-icon color="grey lighten-1">more_horiz</v-icon>
+                </v-btn>
+                <v-list-tile-action-text><v-icon color="grey lighten-1" >access_time</v-icon>{{client.data.timeSpent}}</v-list-tile-action-text>
+                </v-list-tile-action>
+            </v-list-tile>
+        </div>
+        <div v-if="filteredClients.length == 0" class="text-md-center">
+           <v-list-tile > <v-card-text class="text-md-center " xs12> no clients found</v-card-text></v-list-tile >
+        </div>
     </v-list>
-    <v-dialog v-model="newClient.show" max-width="600px">
-      <v-btn slot="activator" color="orange" dark>Open Dialog</v-btn>
-       <v-form
+    <v-dialog v-model="newClient.show" max-width="400px">
+      <v-card class=" pa-3">
+          <v-card-title class="headline">New client</v-card-title>
+          <v-card-text>
+        <v-form
           ref="newClientForm"
           v-model="newClient.validation.valid"
           lazy-validation>
-      <v-card>
-        <v-toolbar dark color="orange">
-         <v-toolbar-title>New Client</v-toolbar-title>
-        </v-toolbar>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 >
-                <v-text-field label="Client name" color="orange" required v-model="newClient.name" :rules="newClient.validation.nameRules"></v-text-field>
-              </v-flex>
-              <v-flex xs12 >
-                <v-text-field label="Description" color="orange" hint="Brief info about your client" v-model="newClient.description"></v-text-field>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="red darken-1" flat  @click="newClient.show = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="saveNewClient()" :disabled="!newClient.validation.valid">Save</v-btn>
-        </v-card-actions>
-      </v-card>
-      </v-form>
-    </v-dialog>
-    <!--<v-dialog
-      v-model="dialog"
-      max-width="340"
-    >
-      <v-card>
-        <v-card-title class="headline">Are you sure you want to remove your client {{}}</v-card-title>
-
-        <v-card-text>
-          Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+                <v-text-field solo class="adm-login-input" color="orange" name="Client name"  label="Client name" type="text"  required v-model="newClient.name" :rules="newClient.validation.nameRules"></v-text-field>
+                <v-text-field solo class="adm-login-input" color="orange"  name="Description" label="Description" hint="Brief info about your client" v-model="newClient.description"></v-text-field>
+          <v-btn color="" large class="adm-login-button font-weight-light white--text adm-orange" flat @click="saveNewClient()" :disabled="!newClient.validation.valid">Save</v-btn>
+        </v-form>
         </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn
-            color="green darken-1"
-            flat="flat"
-            @click="dialog = false"
-          >
-            Disagree
-          </v-btn>
-
-          <v-btn
-            color="green darken-1"
-            flat="flat"
-            @click="dialog = false"
-          >
-            Agree
-          </v-btn>
-        </v-card-actions>
       </v-card>
-    </v-dialog>-->
+    </v-dialog>
 </v-card>
 
 </template>
@@ -148,6 +109,7 @@ export default {
   computed: {
     filteredClients () {
       return this.clients.filter(client => {
+          console.log(client)
         if (this.clientFilter === '') {
           return true
         }
@@ -182,6 +144,9 @@ export default {
     },
     updateClientList (clients) {
       this.clients = clients
+    },
+    randomUser (data) {
+      return 'https://randomuser.me/api/portraits/men/' + data.createdAt.toString().split('').pop() + '.jpg'
     }
   }
 }
